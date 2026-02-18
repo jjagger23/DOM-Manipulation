@@ -1,23 +1,102 @@
+/* 10_css.css
+   Week 5 – DOM Manipulation Styling
+*/
 
-#showArea
-{
+/* -----------------------------
+   GENERAL LAYOUT
+------------------------------ */
+
+body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+main{
+    width: 100%;
+}
+
+main h1{
+    text-align: center;
+    font-size: clamp(18px, 3vw, 28px);
+}
+
+/* -----------------------------
+   HEADER (NOT sticky)
+------------------------------ */
+
+header{
+    background-color: goldenrod;
+    text-align: center;
+    position: static; /* scrolls normally */
+    font-size: 2.5vw;
+    width: 100%;
+    margin: 0;
+    border: 1px solid black;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+/* -----------------------------
+   NAVIGATION (Matches Example)
+------------------------------ */
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    background-color: black;
+    width: 100%;
+}
+
+/* Style the links like large buttons */
+nav a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 20%;
+    margin: 0 2vw;
+    padding: 1vw 0;
+
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+
+    font-size: clamp(14px, 2vw, 26px);
+    white-space: nowrap;
+}
+
+nav a:hover{
+    background-color: darkgoldenrod;
+}
+
+nav a:active{
+    background-color: gold;
+}
+
+nav a:visited{
+    color: white;
+}
+
+/* -----------------------------
+   FILTER + FORM AREA
+------------------------------ */
+
+#showArea{
     display: flex;
     flex-direction: column;
     width: 75%;
-    margin: auto;
-    margin-top: 30px;
+    margin: 30px auto 0 auto;
 }
 
-#toggleButtons
-{
+#toggleButtons{
     margin: auto;
     display: flex;
     width: 20%;
     justify-content: space-evenly;
 }
 
-#toggleButtons > *
-{
+#toggleButtons > *{
     height: 50px;
     border-radius: 10px;
 }
@@ -31,15 +110,37 @@ form#newContent{
 }
 
 form#filterContent{
-    display: block;
+    display: none;
     margin: auto;
 }
 
-.formRow
-{
+.formRow{
     width: 400px;
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
+
+/* -----------------------------
+   ARTICLE LAYOUT
+------------------------------ */
+
+main > div#articleList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+}
+
+article{
+    width: 30%;
+    margin: 1.5%;
+    text-align: justify;
+    font-size: clamp(10px, 1.2vw, 14px);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Article Type Borders */
 
 article.opinion{
     border: 1px solid red;
@@ -53,164 +154,98 @@ article.update{
     border: 1px solid lightseagreen;
 }
 
-.marker
-{
-    float:right;
-    font-size: 1.5em;
+/* Article Type Markers */
+
+.marker{
+    float: right;
+    font-size: 1.3em;
+    padding: 2px 6px;
 }
 
-.date
-{
-    float:left;
-    font-size: 1.5em;
-}
-
-
-.opinion .marker
-{
+.opinion .marker{
     background-color: red;
 }
 
-.recipe .marker
-{
+.recipe .marker{
     background-color: lightskyblue;
 }
 
-.update .marker
-{
+.update .marker{
     background-color: lightseagreen;
 }
 
+/* -----------------------------
+   FOOTER (Contact Us Block)
+------------------------------ */
 
-
-
-body{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-main{
-    width: 100%;
-}
-
-main h1
-{
-    text-align: center;
-    font-size: clamp(12px, 4vw, 24px);
-}
-
-
-header{
-    background-color: goldenrod;
-    text-align: center;
-    position: sticky;
-    top: 0px;
-    font-size: 2.5vw;
-    width: 100%;
-    margin: 0;
-    border: 1px solid black;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-main > div#articleList
-{
-    display:flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-}
-
-article{
-    width: 30%;
-    margin-left:1.5%;
-    margin-right: 1.5%;
-    text-align: justify;
-    font-size: clamp(8px, 1.5vw, 12px);
-    border-radius: 5px;
-}
-
-
-
-footer
-{
+footer{
     padding-top: 5vh;
-    font-size: 2vw;
-    padding-bottom: 10vh;
+    padding-bottom: 8vh;
+    font-size: 1.5vw;
     color: white;
     background-color: black;
 }
 
-a:visited
-{
+/* Only center main Contact line */
+footer > p{
+    text-align: center;
+    margin: 0 auto 3vh auto;
+    width: 50%;
+    font-size: clamp(18px, 2.5vw, 34px);
+}
+
+/* Two-column grid for contact details */
+address > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 8vw;
+    row-gap: 1vh;
+    width: min(900px, 75%);
+    margin: auto;
+}
+
+address > div p{
+    margin: 0;
+    padding: 0;
+}
+
+/* Left column labels */
+address > div p:nth-child(odd){
+    text-align: right;
+}
+
+/* Right column values */
+address > div p:nth-child(even){
+    text-align: left;
+}
+
+a:visited{
     color: darkblue;
 }
 
-footer p{
-    text-align: center;
-    margin: auto;
-    width: 50%;
-    
-}
-
-address > div
-{
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-evenly;
-    width: 75%;
-    margin: auto;
-}
-
-nav{
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    justify-content: space-evenly;
-    background-color: black;
-}
-
-nav button
-{
-    color:white;
-    background-color: blue;
-    text-decoration: none;
-    font-size: 1.5vw;
-    display: inline;
-    width: 20%;
-    padding: 1vw 0vw;
-    text-wrap-mode: nowrap;
-}
-
-nav button:hover{
-    background-color:darkgoldenrod;
-}
-
-nav button:active{
-    background-color: gold;
-}
-
-
-
-
-
-@media screen and (max-width: 600px) {
-    article{
-        width: 75%;
-        margin: auto;
-    }
-}
+/* -----------------------------
+   RESPONSIVE
+------------------------------ */
 
 @media screen and (max-width: 1000px){
+    header{
+        font-size: 4vw;
+    }
+}
 
-    main{
-        width: 100%;
+@media screen and (max-width: 600px){
+
+    article{
+        width: 75%;
+        margin: 10px auto;
     }
 
-    header{
-        width: 100%;
+    nav{
+        flex-wrap: wrap;
+    }
+
+    nav a{
+        width: 75%;
+        margin: 1vw auto;
     }
 }
