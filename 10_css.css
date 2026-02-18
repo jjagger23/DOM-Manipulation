@@ -1,12 +1,10 @@
 /* 10_css.css
-   Week 5 – DOM Manipulation Styling (sticky header+nav like professor)
+   Week 5 – DOM Manipulation Styling (Final Clean Version)
 */
 
-/* -----------------------------
-   GLOBAL / RESET
------------------------------- */
+
 *{
-    box-sizing: border-box; /* keeps columns consistent */
+    box-sizing: border-box;
 }
 
 body{
@@ -19,8 +17,15 @@ main{
     width: 100%;
 }
 
+main h1{
+    text-align: center;
+    font-size: clamp(18px, 3vw, 28px);
+    margin: 12px 0 18px 0;
+    line-height: 1.15;
+}
+
 /* -----------------------------
-   HEADER + NAV (STICKY)
+   HEADER (Sticky)
 ------------------------------ */
 header{
     background-color: goldenrod;
@@ -32,7 +37,7 @@ header{
 
     position: sticky;
     top: 0;
-    z-index: 1000; /* stay above content */
+    z-index: 1000;
 }
 
 header h1{
@@ -42,7 +47,9 @@ header h1{
     letter-spacing: 0.5px;
 }
 
-/* nav sticks right under header */
+/* -----------------------------
+   NAVIGATION (Sticky under header)
+------------------------------ */
 nav{
     display: flex;
     justify-content: space-evenly;
@@ -53,17 +60,11 @@ nav{
     gap: 3vw;
 
     position: sticky;
-    top: 0;              /* fallback */
-    top: calc(22px + 56px); /* overwritten below with a safer approach */
+    top: 0;
     z-index: 999;
 }
 
-/* safer sticky offset: make nav stick BELOW the header using header height */
-nav{
-    top: var(--header-height, 92px);
-}
-
-/* links styled as big buttons */
+/* Nav links styled as large blue blocks */
 nav a{
     flex: 1;
     display: flex;
@@ -89,24 +90,6 @@ nav a:active{
 
 nav a:visited{
     color: white;
-}
-
-/* -----------------------------
-   PUSH CONTENT DOWN
-   so it doesn't hide under sticky header/nav
------------------------------- */
-main{
-    padding-top: var(--sticky-offset, 170px);
-}
-
-/* -----------------------------
-   PAGE TITLES
------------------------------- */
-main h1{
-    text-align: center;
-    font-size: clamp(18px, 3vw, 28px);
-    margin: 12px 0 18px 0;
-    line-height: 1.15;
 }
 
 /* -----------------------------
@@ -153,7 +136,7 @@ form#filterContent{
 }
 
 /* -----------------------------
-   ARTICLE LAYOUT (3 columns)
+   ARTICLE LAYOUT (3 Columns)
 ------------------------------ */
 main > div#articleList{
     display: flex;
@@ -179,7 +162,7 @@ article{
     background: white;
 }
 
-/* Article borders by type */
+/* Article borders */
 article.opinion{
     border: 1px solid red;
 }
@@ -220,7 +203,7 @@ article p{
 }
 
 /* -----------------------------
-   FOOTER (Contact Us Block)
+   FOOTER (Contact Section)
 ------------------------------ */
 footer{
     padding-top: 5vh;
