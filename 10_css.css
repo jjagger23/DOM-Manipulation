@@ -1,14 +1,17 @@
 /* 10_css.css
-   Week 5 – DOM Manipulation Styling
+   Week 5 – DOM Manipulation Styling (sticky header+nav like professor)
 */
 
 /* -----------------------------
-   GENERAL LAYOUT
+   GLOBAL / RESET
 ------------------------------ */
+*{
+    box-sizing: border-box; /* keeps columns consistent */
+}
 
 body{
-    padding: 0;
     margin: 0;
+    padding: 0;
     width: 100%;
 }
 
@@ -16,53 +19,63 @@ main{
     width: 100%;
 }
 
-main h1{
-    text-align: center;
-    font-size: clamp(18px, 3vw, 28px);
-}
-
 /* -----------------------------
-   HEADER (NOT sticky)
+   HEADER + NAV (STICKY)
 ------------------------------ */
-
 header{
     background-color: goldenrod;
     text-align: center;
-    position: static; /* scrolls normally */
-    font-size: 2.5vw;
     width: 100%;
     margin: 0;
     border: 1px solid black;
     font-family: 'Trebuchet MS', Arial, sans-serif;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* stay above content */
 }
 
-/* -----------------------------
-   NAVIGATION (Matches Example)
------------------------------- */
+header h1{
+    margin: 0;
+    padding: 22px 0;
+    font-size: clamp(28px, 4vw, 56px);
+    letter-spacing: 0.5px;
+}
 
+/* nav sticks right under header */
 nav{
     display: flex;
     justify-content: space-evenly;
     align-items: stretch;
     background-color: black;
     width: 100%;
+    padding: 0 3vw;
+    gap: 3vw;
+
+    position: sticky;
+    top: 0;              /* fallback */
+    top: calc(22px + 56px); /* overwritten below with a safer approach */
+    z-index: 999;
 }
 
-/* Style the links like large buttons */
+/* safer sticky offset: make nav stick BELOW the header using header height */
+nav{
+    top: var(--header-height, 92px);
+}
+
+/* links styled as big buttons */
 nav a{
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 20%;
-    margin: 0 2vw;
-    padding: 1vw 0;
 
     background-color: blue;
     color: white;
     text-decoration: none;
 
-    font-size: clamp(14px, 2vw, 26px);
+    padding: 16px 0;
+    font-size: clamp(16px, 2vw, 28px);
     white-space: nowrap;
 }
 
@@ -79,69 +92,94 @@ nav a:visited{
 }
 
 /* -----------------------------
+   PUSH CONTENT DOWN
+   so it doesn't hide under sticky header/nav
+------------------------------ */
+main{
+    padding-top: var(--sticky-offset, 170px);
+}
+
+/* -----------------------------
+   PAGE TITLES
+------------------------------ */
+main h1{
+    text-align: center;
+    font-size: clamp(18px, 3vw, 28px);
+    margin: 12px 0 18px 0;
+    line-height: 1.15;
+}
+
+/* -----------------------------
    FILTER + FORM AREA
 ------------------------------ */
-
 #showArea{
     display: flex;
     flex-direction: column;
     width: 75%;
-    margin: 30px auto 0 auto;
+    margin: 26px auto 0 auto;
 }
 
 #toggleButtons{
-    margin: auto;
+    margin: 0 auto 10px auto;
     display: flex;
-    width: 20%;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 10px;
 }
 
 #toggleButtons > *{
-    height: 50px;
+    height: 44px;
     border-radius: 10px;
+    padding: 0 12px;
 }
 
+/* JS will toggle these */
 form#newContent{
     display: none;
     flex-direction: column;
-    margin: auto;
+    margin: 10px auto 0 auto;
     width: 75%;
     align-items: center;
 }
 
 form#filterContent{
     display: none;
-    margin: auto;
+    margin: 10px auto 0 auto;
 }
 
 .formRow{
     width: 400px;
-    font-size: 1.2em;
+    font-size: 1.15em;
+    line-height: 1.2;
 }
 
 /* -----------------------------
-   ARTICLE LAYOUT
+   ARTICLE LAYOUT (3 columns)
 ------------------------------ */
-
 main > div#articleList{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
+
     font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+    width: 100%;
+    padding: 0 1.5%;
 }
 
 article{
-    width: 30%;
+    width: calc(33.333% - 3%);
     margin: 1.5%;
+    padding: 10px;
+
     text-align: justify;
     font-size: clamp(10px, 1.2vw, 14px);
+    line-height: 1.35;
+
     border-radius: 5px;
-    padding: 10px;
+    background: white;
 }
 
-/* Article Type Borders */
-
+/* Article borders by type */
 article.opinion{
     border: 1px solid red;
 }
@@ -154,11 +192,10 @@ article.update{
     border: 1px solid lightseagreen;
 }
 
-/* Article Type Markers */
-
+/* Marker styling */
 .marker{
     float: right;
-    font-size: 1.3em;
+    font-size: 1.25em;
     padding: 2px 6px;
 }
 
@@ -174,27 +211,31 @@ article.update{
     background-color: lightseagreen;
 }
 
+article h2{
+    margin: 6px 0 8px 0;
+}
+
+article p{
+    margin: 0 0 10px 0;
+}
+
 /* -----------------------------
    FOOTER (Contact Us Block)
 ------------------------------ */
-
 footer{
     padding-top: 5vh;
     padding-bottom: 8vh;
-    font-size: 1.5vw;
     color: white;
     background-color: black;
 }
 
-/* Only center main Contact line */
 footer > p{
     text-align: center;
     margin: 0 auto 3vh auto;
     width: 50%;
-    font-size: clamp(18px, 2.5vw, 34px);
+    font-size: clamp(22px, 2.8vw, 40px);
 }
 
-/* Two-column grid for contact details */
 address > div{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -207,14 +248,14 @@ address > div{
 address > div p{
     margin: 0;
     padding: 0;
+    font-size: clamp(16px, 2vw, 26px);
+    font-style: italic;
 }
 
-/* Left column labels */
 address > div p:nth-child(odd){
     text-align: right;
 }
 
-/* Right column values */
 address > div p:nth-child(even){
     text-align: left;
 }
@@ -226,26 +267,28 @@ a:visited{
 /* -----------------------------
    RESPONSIVE
 ------------------------------ */
-
-@media screen and (max-width: 1000px){
-    header{
-        font-size: 4vw;
+@media screen and (max-width: 900px){
+    article{
+        width: calc(50% - 4%);
+        margin: 2%;
     }
 }
 
 @media screen and (max-width: 600px){
+    nav{
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 3vw;
+    }
+
+    nav a{
+        flex: none;
+        width: 75%;
+        margin: 0 auto;
+    }
 
     article{
         width: 75%;
         margin: 10px auto;
-    }
-
-    nav{
-        flex-wrap: wrap;
-    }
-
-    nav a{
-        width: 75%;
-        margin: 1vw auto;
     }
 }
