@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyBlog.com</title>
+    <link rel="stylesheet" href="10_css.css">
+    
+    <!-- Linked JavaScript file -->
+    <script src="10_js.js" defer></script>
+</head>
+
+<body>
+
+    <button onclick="showFilter()">Filter Articles</button>
+    <button onclick="showAddNew()">Add New Article</button>
+
+    <!-- FILTER MENU -->
+    <div id="filterContent">
+        <h2>Filter by Article Type</h2>
+
+        <label>
+            <input type="checkbox" id="opinionCheckbox" checked onchange="filterArticles()">
+            Opinion
+        </label>
+
+        <label>
+            <input type="checkbox" id="recipeCheckbox" checked onchange="filterArticles()">
+            Recipe
+        </label>
+
+        <label>
+            <input type="checkbox" id="updateCheckbox" checked onchange="filterArticles()">
+            Update
+        </label>
+    </div>
+
+    <!-- ADD NEW ARTICLE FORM -->
+    <div id="newContent">
+        <h2>Add New Article</h2>
+
+        <label>
+            Title:
+            <input type="text" id="inputHeader">
+        </label>
+
+        <br><br>
+
+        <label>
+            Type:
+            <input type="radio" name="type" id="opinionRadio"> Opinion
+            <input type="radio" name="type" id="recipeRadio"> Recipe
+            <input type="radio" name="type" id="lifeRadio"> Life Update
+        </label>
+
+        <br><br>
+
+        <label>
+            Text:
+            <textarea id="inputArticle"></textarea>
+        </label>
+
+        <br><br>
+
+        <button onclick="addNewArticle()">Add New Article</button>
+    </div>
+
+    <h1>Recent Journal Articles</h1>
+
+    <!-- ARTICLE LIST -->
+    <div id="articleList">
+
+        <article class="opinion" id="a1">
+            <span class="marker">Opinion</span>
+            <h2>Article 1</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="opinion" id="a2">
+            <span class="marker">Opinion</span>
+            <h2>Article 2</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="recipe" id="a3">
+            <span class="marker">Recipe</span>
+            <h2>Article 3</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="update" id="a4">
+            <span class="marker">Update</span>
+            <h2>Article 4</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="update" id="a5">
+            <span class="marker">Update</span>
+            <h2>Article 5</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="recipe" id="a6">
+            <span class="marker">Recipe</span>
+            <h2>Article 6</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="recipe" id="a7">
+            <span class="marker">Recipe</span>
+            <h2>Article 7</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="opinion" id="a8">
+            <span class="marker">Opinion</span>
+            <h2>Article 8</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="opinion" id="a9">
+            <span class="marker">Opinion</span>
+            <h2>Article 9</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+        <article class="opinion" id="a10">
+            <span class="marker">Opinion</span>
+            <h2>Article 10</h2>
+            <p>Lorem ipsum dolor sit amet...</p>
+            <p><a href="moreDetails.html">Read more...</a></p>
+        </article>
+
+    </div>
+
+</body>
+</html>
