@@ -2,7 +2,6 @@
    Week 5 – DOM Manipulation Styling (Final Clean Version)
 */
 
-
 *{
     box-sizing: border-box;
 }
@@ -60,7 +59,7 @@ nav{
     gap: 3vw;
 
     position: sticky;
-    top: 0;
+    top: 94px; /* CHANGED: keeps nav pinned under the header */
     z-index: 999;
 }
 
@@ -255,6 +254,11 @@ a:visited{
         width: calc(50% - 4%);
         margin: 2%;
     }
+
+    /* header height changes on smaller screens, so keep nav closer */
+    nav{
+        top: 80px;
+    }
 }
 
 @media screen and (max-width: 600px){
@@ -262,6 +266,7 @@ a:visited{
         flex-wrap: wrap;
         gap: 12px;
         padding: 12px 3vw;
+        top: 70px;
     }
 
     nav a{
